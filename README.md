@@ -1,5 +1,10 @@
 # Gym LLM
-The purpose of this repository is to build an LLM-powered agent that interacts with an environment by reflecting on its previous observations and actions. LLMs ability to plan and reflect on complex environments can be tested. The LLM agent can also be used to compare against a traditional deep reinforcement learning agent.
+The purpose of this repository is to facilitate the deployment of LLM-powered agents that interacts with `gymnasium` environments by reflecting on its previous observations and actions.
+The agents can be powered by `OpenAI` models or any local model that is integrated in `Ollama`. 
+
+The library offers:
+- `LLMWrapper`: A wrapper for `gymnasium` environments so you define the minimum requirements for the agent to interact with the environment: observation schema and goal description.
+- `Agent`: An agent class to ask for actions based on the previous observations and actions.
 
 ## Installation
 To install the `gym-llm` package, run the following command:
@@ -8,11 +13,13 @@ cd gym-llm
 pip install .
 ```
 
-## Configuration
-
 ## Usage
 
 ## Results
+
+| **Environment** |    **LLM**    | **Reward** |
+|:---------------:|:-------------:|:----------:|
+| LunarLander-v2  | `llama3.1-8B` |    0.0     |
 
 ## Citation
 If you find `gym-llm` useful, please consider citing:
