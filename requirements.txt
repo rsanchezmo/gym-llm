@@ -1,0 +1,4 @@
+ollama
+gymnasium[accept-rom-license, box2d]
+openai
+pyyaml
