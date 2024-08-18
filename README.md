@@ -2,6 +2,9 @@
 The purpose of this repository is to facilitate the deployment of LLM-powered agents that interacts with `gymnasium` environments by reflecting on its previous observations and actions.
 The agents can be powered by `OpenAI` models or any local model that is integrated in `Ollama`. 
 
+![gym-llm](./doc/gym-llm.png)
+
+
 > [!NOTE] 
 > As it will depend on your hardware, the model size and the fact that LLMs are not real time (high action rates: e.g. 20fps) this repo does not care about it. This type of agents will be suitable for high level control and planning, with low action rates!
 
