@@ -1,0 +1,19 @@
+agent:
+    backend: 'ollama'  # 'ollama' or 'openai'
+    model: 'llama3.1'
+    temperature: .8
+    history: 10
+    action_rate: 1
+
+environment:
+    name: 'lunar_lander'
+    max_episode_steps: 1000
+    class_name: 'LunarLander'
+    main_file: 'env.py'
+    kwargs: null
+
+experiment:
+    parent: 'experiments'
+    name: 'lunar_lander_llama3.1'
+    use_datetime: true
+    seed: 0

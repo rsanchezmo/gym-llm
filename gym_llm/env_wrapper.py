@@ -10,3 +10,7 @@ class LLMWrapper:
     @abstractmethod
     def get_goal_description(self):
         ...
+
+    @abstractmethod
+    def get_action_schema(self):
+        ...
