@@ -6,11 +6,13 @@ The agents can be powered by `OpenAI` models or any local model that is integrat
 
 
 > [!NOTE] 
-> As it will depend on your hardware, the model size and the fact that LLMs are not real time (high action rates: e.g. 20fps) this repo does not care about it. This type of agents will be suitable for high level control and planning, with low action rates!
+> As inference is hardware and model size dependant, real time environments are not a proper use case (high action rates: e.g. 20fps). However, real time environments are tested as if the inference was fast enough. LLM agents should be suitable for high level control and planning, with low action rates!
 
 The library offers:
 - `LLMWrapper`: A wrapper for `gymnasium` environments so you define the minimum requirements for the agent to interact with the environment: observation schema, action schema and goal description.
 - `Agent`: An agent class to ask for actions based on the previous observations and actions.
+- `run_experiment`: A utility function to run the experiment with the configuration file.
+- `parse_config`: A function to parse the configuration file.
 
 ## Installation
 To install the `gym-llm` package, run the following command:
@@ -83,11 +85,44 @@ Or you can use the `run_experiment` function to run the experiment with the conf
 python main.py
 ```
 If using this utility function, there will be created a folder with the gif of each run, the raw outputs of the llm, the results metrics and the configuration file used.
+```json
+{
+  "5": {
+    "reflection": "The lander's y-coordinate is still decreasing but at a slower rate, and its x-coordinate and z-coordinate are increasing. The lander's angular velocity has changed direction, now pointing in the positive angular direction. This could indicate that the lander is starting to descend or level out.",
+    "action": 0
+  },
+  "6": {
+    "reflection": "The lander's descent is accelerating with the y-coordinate continuing to decrease and its z-coordinate increasing. The angular velocity remains in a positive direction, indicating the lander is likely to continue descending.",
+    "action": 0
+  },
+  "7": {
+    "reflection": "The lander's descent is becoming more steep with the y-coordinate decreasing rapidly and its z-coordinate increasing significantly. The angular velocity remains positive, indicating a likely continued downward trajectory.",
+    "action": 1
+  },
+  "8": {
+    "reflection": "The lander's descent is becoming even more steep with the y-coordinate decreasing rapidly and its z-coordinate increasing significantly. The angular velocity has increased in magnitude, but still points in a positive direction. This could indicate that the lander is starting to correct its course or prepare for landing.",
+    "action": 1
+  }
+}
+```
+
+```json
+{
+    "total_rewards": [
+        21.994503894092517
+    ],
+    "total_steps": [
+        60
+    ],
+    "avg_reward": 21.994503894092517,
+    "avg_steps": 60.0
+}
+```
 
 ## Results
-| **Environment** |    **LLM**    | **Reward** | **Action rate** | **Initial seed** |
-|:---------------:|:-------------:|:----------:|:---------------:|:----------------:|
-| LunarLander-v2  | `llama3.1-8B` |    0.0     |        1        |        0         |
+| **Environment** |    **LLM**    | **Reward** | **Total steps** | **Action rate** | **Initial seed** |
+|:---------------:|:-------------:|:----------:|:---------------:|:---------------:|:----------------:|
+| LunarLander-v2  | `llama3.1-8B` |   21.99    |       60        |        1        |        0         |
 
 
 ## Future work
@@ -95,6 +130,7 @@ If using this utility function, there will be created a folder with the gif of e
 - Better rendering: img and llm reasoning on the same window
 - Comparison against reinforcement learning agents
 - Run batch of experiments
+- Add gif to the results table
 
 ## Citation
 If you find `gym-llm` useful, please consider citing:

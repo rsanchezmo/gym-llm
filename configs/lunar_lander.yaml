@@ -3,7 +3,7 @@ agent:
     model: 'llama3.1'
     temperature: .8
     history: 10
-    action_rate: 1
+    action_rate: 4
 
 environment:
     name: 'LunarLanderLLM-v2'
