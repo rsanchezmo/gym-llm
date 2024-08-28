@@ -1,5 +1,3 @@
-from distutils.command.config import config
-
 # Gym LLM
 The purpose of this repository is to facilitate the deployment of LLM-powered agents that interacts with `gymnasium` environments by reflecting on its previous observations and actions.
 The agents can be powered by `OpenAI` models or any local model that is integrated in `Ollama`. 
