@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Dict
 import gymnasium as gym
 
+import gym_llm
 
 
 def parse_config(path: Path) -> Dict:
@@ -13,9 +14,6 @@ def parse_config(path: Path) -> Dict:
 
 def get_env(env_config: Dict):
     name = env_config.get('name', '')
-    max_episode_steps = env_config.get('max_episode_steps', 100)
-    class_name = env_config.get('class_name', '')
-    main_file = env_config.get('main_file', 'env.py')
     kwargs = env_config.get('kwargs', {})
 
     if kwargs is None:
@@ -24,13 +22,16 @@ def get_env(env_config: Dict):
     if 'render_mode' not in kwargs:
         kwargs['render_mode'] = 'human'
 
-    module_name = f"environments.{name}.{main_file.split('.py')[0]}"
+    return gym.make(id=name, **kwargs)
 
-    gym_id = f'gym_llm_{name}_env-v0'
+def get_env_definition(env):
+    if not isinstance(env.unwrapped, gym_llm.LLMWrapper):
+        raise ValueError(f'Expected an instance of LLMWrapper, got {type(env)}')
 
-    gym.register(id=gym_id,
-             entry_point=f"{module_name}:{class_name}",
-             max_episode_steps=max_episode_steps)
+    if not isinstance(env, gym.Env):
+        raise ValueError(f'Expected an instance of gym.Env, got {type(env)}')
 
-
-    return gym.make(id=gym_id, **kwargs)
+    return {'observation_schema': env.unwrapped.get_observation_schema(),
+            'action_schema': env.unwrapped.get_action_schema(),
+            'goal_description': env.unwrapped.get_goal_description()
+            }

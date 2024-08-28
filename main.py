@@ -1,6 +1,8 @@
 from pathlib import Path
+import gymnasium as gym
+import environments  # to register the environments
 
-from gym_llm import Agent, parse_config, get_env
+from gym_llm import Agent, parse_config, get_env_definition, get_env
 
 if __name__ == '__main__':
 
@@ -9,9 +11,7 @@ if __name__ == '__main__':
     env = get_env(env_config=config.get('environment'))
 
     agent = Agent(config=config.get('agent'),
-                  observation_schema=env.get_observation_schema(),
-                  action_schema=env.get_action_schema(),
-                  goal_description=env.get_goal_description())
+                  **get_env_definition(env))
 
     exp_config = config.get('experiment')
     seed = exp_config.get('seed', 0)

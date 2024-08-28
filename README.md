@@ -23,7 +23,7 @@ pip install .
 ```
 
 ## Environments
-Every environment must inherit from both `gymnasium.Env` and `gym_llm.LLMWrapper` to implement every abstractmethod.
+Every environment must inherit from both `gymnasium.Env` and `gym_llm.LLMWrapper` to implement every `abstractmethod`.
 
 - You must define `get_observation_schema()`, `get_action_schema()` and `get_goal_description()` so the agent
 can receive that information as the `system_prompt`.
@@ -41,10 +41,7 @@ agent:
     action_rate: 1              # how many frames to skip without any action
 
 environment:
-    name: 'lunar_lander'        # name of the environment folder
-    max_episode_steps: 1000     # max episode steps
-    class_name: 'LunarLander'   # name of the class of the env
-    main_file: 'env.py'         # main file where the class is defined
+    name: 'LunarLanderLLM-v2'   # name of the registered environment
     kwargs: null                # extra args for the environment
 
 experiment:

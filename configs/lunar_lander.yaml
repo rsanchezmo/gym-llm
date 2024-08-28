@@ -6,10 +6,7 @@ agent:
     action_rate: 1
 
 environment:
-    name: 'lunar_lander'
-    max_episode_steps: 1000
-    class_name: 'LunarLander'
-    main_file: 'env.py'
+    name: 'LunarLanderLLM-v2'
     kwargs: null
 
 experiment:
