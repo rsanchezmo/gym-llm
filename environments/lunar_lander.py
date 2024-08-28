@@ -822,11 +822,11 @@ class LunarLander(gym.Env, EzPickle, LLMWrapper):
 
     def get_goal_description(self):
         return """This environment is a classic rocket trajectory optimization problem.
-                According to Pontryagin's maximum principle, it is optimal to fire the
-                engine at full throttle or turn it off. This is the reason why this environment 
-                has discrete actions: engine on or off. The landing pad is always at coordinates (0,0). 
-                Landing outside of the landing pad is possible. Fuel is infinite, so an agent can learn 
-                to fly and then land on its first attempt."""
+         According to Pontryagin's maximum principle, it is optimal to fire the
+         engine at full throttle or turn it off. This is the reason why this environment 
+         has discrete actions: engine on or off. The landing pad is always at coordinates (0,0). 
+         Landing outside of the landing pad is possible. Fuel is infinite, so an agent can learn 
+         to fly and then land on its first attempt."""
 
     def get_observation_schema(self):
         return {

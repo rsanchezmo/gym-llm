@@ -14,3 +14,7 @@ experiment:
     name: 'lunar_lander_llama3.1'
     use_datetime: true
     seed: 0
+    save_gif: true
+    gif_fps: 30
+    num_runs: 1
+    verbose: true

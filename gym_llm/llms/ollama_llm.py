@@ -27,22 +27,23 @@ class OllamaLLM(BaseLLM):
             answer_json = json.loads(answer['message']['content'])
             action = answer_json.get('action', None)
             reflection = answer_json.get('reflection', '')
-        except:
+        except Exception as e:
             action = None
-            reflection = 'Error in generation'
+            reflection = 'Error in generation of the json format'
+
+
+        content = {
+            'reflection': reflection,
+            'action': action
+        }
 
         self.history.append(
             {
                 'role': 'assistant',
-                'content': str(
-                    {
-                        'reflection': reflection,
-                        'action': action
-                    }
-                )
+                'content': str(content)
             }
         )
 
-        return answer
+        return content
 
 
