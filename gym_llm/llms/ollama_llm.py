@@ -1,6 +1,7 @@
 from .base_llm import BaseLLM
 import ollama
 import json
+from gym_llm.logger import get_logger
 
 
 class OllamaLLM(BaseLLM):
@@ -30,6 +31,7 @@ class OllamaLLM(BaseLLM):
         except Exception as e:
             action = None
             reflection = 'Error in generation of the json format'
+            get_logger().warn(f'Error in generation: {e}')
 
 
         content = {

@@ -816,8 +816,10 @@ class LunarLander(gym.Env, EzPickle, LLMWrapper):
 
     def get_action_schema(self):
         return {
-            0: 'engine on',
-            1: 'engine off'
+            0: 'do nothing',
+            1: 'fire left orientation engine',
+            2: 'fire main engine',
+            3: 'fire right orientation engine'
         }
 
     def get_goal_description(self):

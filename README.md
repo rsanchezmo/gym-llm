@@ -120,13 +120,15 @@ If using this utility function, there will be created a folder with the gif of e
 ```
 
 ## Results
-| **Environment** |    **LLM**    | **Reward** | **Total steps** | **Action rate** | **Initial seed** |
-|:---------------:|:-------------:|:----------:|:---------------:|:---------------:|:----------------:|
-| LunarLander-v2  | `llama3.1-8B` |   21.99    |       60        |        1        |        0         |
+| **Environment** |    **LLM**    | **Reward** | **Total steps** | **Action rate** | **Initial seed** | **% of successful runs** |
+|:---------------:|:-------------:|:----------:|:---------------:|:---------------:|:----------------:|:------------------------:|
+| LunarLander-v2  | `gpt-4o-mini` |     0      |        0        |        1        |        0         |            0             |
+| LunarLander-v2  | `llama3.1-8B` |   21.99    |       60        |        1        |        0         |            0             |
+
 
 
 ## Future work
-- OpenAI integration
+- Add reward description and values to the llm prompt?
 - Better rendering: img and llm reasoning on the same window
 - Comparison against reinforcement learning agents
 - Run batch of experiments

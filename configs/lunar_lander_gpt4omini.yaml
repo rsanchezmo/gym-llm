@@ -1,0 +1,20 @@
+agent:
+    backend: 'openai'  # 'ollama' or 'openai'
+    model: 'gpt-4o-mini'
+    temperature: .8
+    history: 10
+    action_rate: 1
+
+environment:
+    name: 'LunarLanderLLM-v2'
+    kwargs: null
+
+experiment:
+    parent: 'experiments'
+    name: 'lunar_lander_gpt-4o-mini'
+    use_datetime: true
+    seed: 0
+    save_gif: true
+    gif_fps: 30
+    num_runs: 1
+    verbose: true
