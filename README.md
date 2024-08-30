@@ -9,7 +9,7 @@ The agents can be powered by `OpenAI` models or any local model that is integrat
 > As inference is hardware and model size dependant, real time environments are not a proper use case (high action rates: e.g. 20fps). However, real time environments are tested as if the inference was fast enough. LLM agents should be suitable for high level control and planning, with low action rates!
 
 The library offers:
-- `LLMWrapper`: A wrapper for `gymnasium` environments so you define the minimum requirements for the agent to interact with the environment: observation schema, action schema and goal description.
+- `LLMEnv`: A base class to adapt `gymnasium` environments by defining the minimum requirements for the agent to interact with the environment: observation schema, action schema and goal description.
 - `Agent`: An agent class to ask for actions based on the previous observations and actions.
 - `run_experiment`: A utility function to run the experiment with the configuration file.
 - `parse_config`: A function to parse the configuration file.
@@ -22,7 +22,7 @@ pip install .
 ```
 
 ## Environments
-Every environment must inherit from both `gymnasium.Env` and `gym_llm.LLMWrapper` to implement every `abstractmethod`.
+Every environment must inherit from both `gymnasium.Env` and `gym_llm.LLMEnv` to implement every `abstractmethod`.
 
 - You must define `get_observation_schema()`, `get_action_schema()` and `get_goal_description()` so the agent
 can receive that information as the `system_prompt`.

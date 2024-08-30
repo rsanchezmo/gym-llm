@@ -29,8 +29,8 @@ def get_env(env_config: Dict, render_mode: str = 'human'):
     return gym.make(id=name, **kwargs)
 
 def get_env_definition(env):
-    if not isinstance(env.unwrapped, gym_llm.LLMWrapper):
-        raise ValueError(f'Expected an instance of LLMWrapper, got {type(env)}')
+    if not isinstance(env.unwrapped, gym_llm.LLMEnv):
+        raise ValueError(f'Expected an instance of LLMEnv, got {type(env)}')
 
     if not isinstance(env, gym.Env):
         raise ValueError(f'Expected an instance of gym.Env, got {type(env)}')

@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 
-class LLMWrapper:
+class LLMEnv:
 
     @abstractmethod
     def get_observation_schema(self):

@@ -12,7 +12,7 @@ from gymnasium.error import DependencyNotInstalled
 from gymnasium.utils import EzPickle, colorize
 from gymnasium.utils.step_api_compatibility import step_api_compatibility
 
-from gym_llm import LLMWrapper
+from gym_llm import LLMEnv
 
 try:
     import Box2D
@@ -79,7 +79,7 @@ class ContactDetector(contactListener):
                 self.env.legs[i].ground_contact = False
 
 
-class LunarLander(gym.Env, EzPickle, LLMWrapper):
+class LunarLander(gym.Env, EzPickle, LLMEnv):
     """
     ## Description
     This environment is a classic rocket trajectory optimization problem.
