@@ -1,0 +1,20 @@
+agent:
+    backend: 'ollama'  # 'ollama' or 'openai'
+    model: 'llama3.1'
+    temperature: .0
+    history: 10
+    action_rate: 1
+
+environment:
+    name: 'BlackjackLLM-v1'
+    kwargs: null
+
+experiment:
+    parent: 'experiments'
+    name: 'black_jack_llama3.1'
+    use_datetime: true
+    seed: 0
+    save_gif: true
+    gif_fps: 1
+    num_runs: 1
+    verbose: true

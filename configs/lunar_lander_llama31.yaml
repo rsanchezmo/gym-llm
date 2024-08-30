@@ -1,7 +1,7 @@
 agent:
     backend: 'ollama'  # 'ollama' or 'openai'
     model: 'llama3.1'
-    temperature: .8
+    temperature: .0
     history: 10
     action_rate: 1
 
@@ -16,5 +16,5 @@ experiment:
     seed: 0
     save_gif: true
     gif_fps: 30
-    num_runs: 1
+    num_runs: 5
     verbose: true

@@ -5,9 +5,9 @@ from gym_llm.logger import get_logger
 
 
 class OllamaLLM(BaseLLM):
-    def __init__(self, model: str, temperature: float = 0.8):
+    def __init__(self, model: str, temperature: float = 0.8, system_prompt: str = '', history_len: int = 10):
 
-        super().__init__(model=model, temperature=temperature)
+        super().__init__(model=model, temperature=temperature, system_prompt=system_prompt, history_len=history_len)
 
         self.ollama_options = ollama.Options(
             temperature=temperature,
@@ -19,7 +19,7 @@ class OllamaLLM(BaseLLM):
         answer = ollama.chat(
             model=self.model,
             options=self.ollama_options,
-            messages=self.history,
+            messages=[{'role': 'system', 'content': self.system_prompt}] + list(self.history),
             format='json'
         )
 
@@ -30,7 +30,7 @@ class OllamaLLM(BaseLLM):
             reflection = answer_json.get('reflection', '')
         except Exception as e:
             action = None
-            reflection = 'Error in generation of the json format'
+            reflection = ''
             get_logger().warn(f'Error in generation: {e}')
 
 
@@ -38,13 +38,6 @@ class OllamaLLM(BaseLLM):
             'reflection': reflection,
             'action': action
         }
-
-        self.history.append(
-            {
-                'role': 'assistant',
-                'content': str(content)
-            }
-        )
 
         return content
 

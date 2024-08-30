@@ -828,7 +828,22 @@ class LunarLander(gym.Env, EzPickle, LLMEnv):
          engine at full throttle or turn it off. This is the reason why this environment 
          has discrete actions: engine on or off. The landing pad is always at coordinates (0,0). 
          Landing outside of the landing pad is possible. Fuel is infinite, so an agent can learn 
-         to fly and then land on its first attempt."""
+         to fly and then land on its first attempt.
+         For each step, the reward:
+            - is increased/decreased the closer/further the lander is to the landing pad.
+            - is increased/decreased the slower/faster the lander is moving.
+            - is decreased the more the lander is tilted (angle not horizontal).
+            - is increased by 10 points for each leg that is in contact with the ground.
+            - is decreased by 0.03 points each frame a side engine is firing.
+            - is decreased by 0.3 points each frame the main engine is firing.
+         The episode receive an additional reward of -100 or +100 points for crashing or landing safely respectively.
+         An episode is considered a solution if it scores at least 200 points.
+         The lander starts at the top center of the viewport with a random initial force applied to its center of mass.
+         The episode finishes if:
+            1) the lander crashes (the lander body gets in contact with the moon);
+            2) the lander gets outside of the viewport (`x` coordinate is greater than 1);
+            3) the lander is not awake.
+         """
 
     def get_observation_schema(self):
         return {

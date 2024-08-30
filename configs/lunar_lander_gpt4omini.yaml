@@ -1,7 +1,7 @@
 agent:
     backend: 'openai'  # 'ollama' or 'openai'
     model: 'gpt-4o-mini'
-    temperature: .8
+    temperature: .0
     history: 10
     action_rate: 1
 

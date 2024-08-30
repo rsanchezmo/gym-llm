@@ -6,8 +6,8 @@ from gym_llm.llms.base_llm import BaseLLM
 
 
 class OpenAILLM(BaseLLM):
-    def __init__(self, model: str, temperature: float = 0.8):
-        super().__init__(model=model, temperature=temperature)
+    def __init__(self, model: str, temperature: float = 0.8, system_prompt: str = '', history_len: int = 10):
+        super().__init__(model=model, temperature=temperature, system_prompt=system_prompt, history_len=history_len)
 
         self.openai_client = OpenAI()
 
@@ -15,7 +15,7 @@ class OpenAILLM(BaseLLM):
         try:
             response = self.openai_client.chat.completions.create(
                 model=self.model,
-                messages=self.history,
+                messages=[{'role': 'system', 'content': self.system_prompt}] + list(self.history),
                 temperature=self.temperature,
                 max_tokens=256,
                 response_format={"type": "json_object"}
@@ -29,24 +29,17 @@ class OpenAILLM(BaseLLM):
                 reflection = answer_json.get('reflection', '')
             except json.JSONDecodeError:
                 action = None
-                reflection = 'Error in parsing the message content as JSON'
+                reflection = ''
                 get_logger().warn(f'Error in parsing the message content as JSON: {message_content}')
 
         except Exception as e:
             action = None
-            reflection = f'Error in generation: {str(e)}'
+            reflection = ''
             get_logger().warn(f'Error in generation: {e}')
 
         content = {
             'reflection': reflection,
             'action': action
         }
-
-        self.history.append(
-            {
-                'role': 'assistant',
-                'content': str(content)
-            }
-        )
 
         return content

@@ -104,7 +104,7 @@ def run_experiment(config):
             logger.info('********************************')
             logger.info(f'    Observation: {obs}')
             logger.info(f'    Reflection: {raw_output["reflection"]}')
-            logger.info(f'    Action: {raw_output["action"]} -> {agent.action_schema.get(raw_output["action"], "Unknown action")}')
+            logger.info(f'    Action: {raw_output["action"]} -> {agent.action_schema.get(int(raw_output["action"]), "Unknown action")}')
             logger.info(f'    Reward: {reward} -> Total reward: {total_reward}')
             logger.info(f'    Num steps: {num_steps}')
             logger.info(f'    Terminated: {terminated}')
