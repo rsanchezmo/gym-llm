@@ -15,3 +15,11 @@ gym.register(
     entry_point='environments:BlackjackEnv',
     kwargs={"sab": True, "natural": False}
 )
+
+from .taxi import TaxiEnv
+gym.register(
+    id="TaxiLLM-v3",
+    entry_point="environments:TaxiEnv",
+    reward_threshold=8,  # optimum = 8.46
+    max_episode_steps=200,
+)

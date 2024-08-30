@@ -148,25 +148,32 @@ If using this utility function, there will be created a folder with the gif of e
 ```
 
 ## Results
+To avoid paying too much on the OpenAI API, if a first debug run does not show any chance to complete the environment, then the experiment is considered as done.
+
 | **Environment** |    **LLM**    | **Avg reward** | **Avg steps** | **Action rate** | **Initial seed** | **% of successful runs** | **Num of runs** |                 **Gif**                  |
 |:---------------:|:-------------:|:--------------:|:-------------:|:---------------:|:----------------:|:------------------------:|:---------------:|:----------------------------------------:|
-| LunarLander-v2  | `gpt-4o-mini` |       0        |       0       |        1        |        0         |            0             |        5        | ![gif](./doc/lunar_lander/gpt4omini.gif) |
-| LunarLander-v2  | `llama3.1-8B` |    -391.20     |     79.2      |        1        |        0         |            0             |        5        |  ![gif](./doc/lunar_lander/llama31.gif)  |
+| LunarLander-v2  | `gpt-4o-mini` |       -        |       -       |        1        |        0         |            0%            |        1        | ![gif](./doc/lunar_lander/gpt4omini.gif) |
+| LunarLander-v2  | `llama3.1-8B` |    -391.20     |     79.2      |        1        |        0         |            0%            |        5        |  ![gif](./doc/lunar_lander/llama31.gif)  |
 | MountainCar-v0  | `gpt-4o-mini` |                |               |                 |                  |                          |                 |                                          |
 | MountainCar-v0  | `llama3.1-8B` |                |               |                 |                  |                          |                 |                                          |
 |  Blackjack-v1   | `gpt-4o-mini` |      0.1       |      1.8      |        1        |        0         |           50%            |       10        |  ![gif](./doc/blackjack/gpt4omini.gif)   |
 |  Blackjack-v1   | `llama3.1-8B` |      -0.1      |      1.5      |        1        |        0         |           40%            |       10        |   ![gif](./doc/blackjack/llama31.gif)    |
-|     Taxi-v3     | `gpt-4o-mini` |                |               |                 |                  |                          |                 |                                          |
-|     Taxi-v3     | `llama3.1-8B` |                |               |                 |                  |                          |                 |                                          |
+|     Taxi-v3     | `gpt-4o-mini` |       -        |       -       |        1        |        0         |            0%            |        1        |                                          |
+|     Taxi-v3     | `llama3.1-8B` |       -        |       -       |        1        |        0         |            0%            |        1        |                                          |
 
 
 ## Future work
 - Better rendering: img and llm reasoning on the same window
 - Comparison against reinforcement learning agents
+- Add more environments
 
 ## Conclusion
-LLMs does not behave well for continuous observation spaces and low level control. On the other hand, it shows great potential for high level control and planning tasks.
-As there is no training, using LLM agents for this tasks could be a great alternative to reinforcement learning agents! Using opensource models have shown to be more than enough for the tasks tested.
+LLMs does not behave well for continuous observation spaces and low level control. On the other hand, it shows great potential for high level control and planning tasks (quite easy ones).
+As there is no training, using LLM agents for this tasks could be a great alternative to reinforcement learning agents! Using opensource models have shown to be more than enough for the tasks tested (that it solved).
+Future models will be more powerful and hope they are able to solve all these tasks!
+
+> [!NOTE] 
+> If you have the hardware to run more experiments with better models feel free to contribute!
 
 ## Citation
 If you find `gym-llm` useful, please consider citing:
@@ -179,3 +186,5 @@ If you find `gym-llm` useful, please consider citing:
     howpublished = {https://github.com/rsanchezmo/gym-llm},
   }
 ```
+
+You can reach out by email: `rsanchezm98@gmail.com`
