@@ -154,13 +154,15 @@ To avoid paying too much on the OpenAI API, if a first debug run does not show a
 |:---------------:|:-------------:|:--------------:|:-------------:|:---------------:|:----------------:|:------------------------:|:---------------:|:----------------------------------------:|
 | LunarLander-v2  | `gpt-4o-mini` |       -        |       -       |        1        |        0         |            0%            |        1        | ![gif](./doc/lunar_lander/gpt4omini.gif) |
 | LunarLander-v2  | `llama3.1-8B` |    -391.20     |     79.2      |        1        |        0         |            0%            |        5        |  ![gif](./doc/lunar_lander/llama31.gif)  |
-| MountainCar-v0  | `gpt-4o-mini` |                |               |                 |                  |                          |                 |                                          |
-| MountainCar-v0  | `llama3.1-8B` |                |               |                 |                  |                          |                 |                                          |
 |  Blackjack-v1   | `gpt-4o-mini` |      0.1       |      1.8      |        1        |        0         |           50%            |       10        |  ![gif](./doc/blackjack/gpt4omini.gif)   |
 |  Blackjack-v1   | `llama3.1-8B` |      -0.1      |      1.5      |        1        |        0         |           40%            |       10        |   ![gif](./doc/blackjack/llama31.gif)    |
-|     Taxi-v3     | `gpt-4o-mini` |       -        |       -       |        1        |        0         |            0%            |        1        |                                          |
-|     Taxi-v3     | `llama3.1-8B` |       -        |       -       |        1        |        0         |            0%            |        1        |                                          |
+|     Taxi-v3     | `gpt-4o-mini` |      -374      |      50       |        1        |        0         |            0%            |        1        |     ![gif](./doc/taxi/gpt4omini.gif)     |
+|     Taxi-v3     |   `gpt-4o`    |      -50       |      50       |        1        |        0         |            0%            |        1        |       ![gif](./doc/taxi/gpt4o.gif)       |
+|     Taxi-v3     | `llama3.1-8B` |      -491      |      50       |        1        |        0         |            0%            |        1        |      ![gif](./doc/taxi/llama31.gif)      |
 
+> [!NOTE] 
+> For the taxi env, the max_steps_per_episode var has been set to 50 in order have more tests and see if there were any "smart" behaviour. I tried `gpt-4o` to see if a better model solved the environment. As
+> you can see, the agent "moves", but still very stupid!
 
 ## Future work
 - Better rendering: img and llm reasoning on the same window

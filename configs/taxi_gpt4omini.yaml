@@ -1,6 +1,6 @@
 agent:
     backend: 'openai'  # 'ollama' or 'openai'
-    model: 'gpt-4o'
+    model: 'gpt-4o-mini'
     temperature: .0
     history: 50
     action_rate: 1
@@ -14,7 +14,7 @@ experiment:
     name: 'taxi_gpt-4o-mini'
     use_datetime: true
     seed: 0
-    save_gif: false
+    save_gif: true
     gif_fps: 1
     num_runs: 1
     verbose: true
